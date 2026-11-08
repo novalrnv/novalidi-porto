@@ -1,0 +1,99 @@
+---
+const projects = [
+  {
+    title: 'Tripweb',
+    /* "Lokachara" adalah nama produknya, "Tripweb" nama project-nya.
+       Nama produk disebut di kalimat pertama supaya logo bertulisan
+       Lokachara di dalam gambar tidak terbaca sebagai project lain.
+       Fitur yang ditulis hanya yang benar-benar terlihat di screenshot:
+       nav-nya Destinasi / Promo / Lokasi / Pesan Sekarang. */
+    description: 'Lokachara — platform web travel untuk menjelajahi destinasi, melihat promo, dan melakukan pemesanan. Dibangun dengan Laravel, panel admin memakai Filament.',
+    /* Teknologi yang dipakai di project ini, bukan peran. */
+    stack: ['Filament', 'Laravel'],
+    /* Default: logo. Hover: screenshot homepage. */
+    image: '/images/lokachara-logo.webp',
+    /* Foto kedua, tampil saat kursor menyentuh kartu */
+    imageHover: '/images/lokachara-page.webp',
+  },
+  {
+    title: 'Smart Receipt Analyzer',
+    description: 'SmartReceipt Analyzer - aplikasi mobile Flutter yang memindai struk belanja dengan OCR on-device, mengklasifikasikan item ke 9 kategori belanja memakai model TF-IDF + Naive Bayes yang berjalan offline, lalu menyajikan riwayat, analisis, dan prediksi pengeluaran dari database SQLite lokal.',
+    stack: ['Flutter', 'Dart', 'On Device ~ OCR'],
+    /* Foto utama: tampil default */
+    image: '/images/smart-receipt-logo.jpg',
+    /* Foto kedua: tampil saat kursor menyentuh kartu */
+    imageHover: '/images/smart-receipt-app.jpg',
+  },
+  {
+    title: 'Segera Hadir',
+    description: 'Proyek berikutnya sedang disiapkan.',
+    /* Belum ada teknologinya, jadi baris chip dilewati. */
+    stack: [],
+    /* Baris diredupkan dan tidak bisa di-hover. Dulu ini menumpang pada
+       tidak adanya `link`; sekarang ditulis eksplisit karena redupnya
+       memang karena project-nya belum ada. */
+    soon: true,
+    image: null,
+    imageHover: null,
+  },
+];
+---
+
+<section id="project" class="project-section">
+  <div class="project-container">
+
+    <div class="project-header" data-reveal>
+      <span class="about-label">Selected Works</span>
+      <h2 class="project-heading">Proyek yang Pernah Saya Kerjakan</h2>
+    </div>
+
+    <div class="project-list">
+      {projects.map((p, i) => (
+        <article
+          class={`project-row ${i % 2 ? 'project-row--flip' : ''} ${p.soon ? 'project-row--soon' : ''}`}
+          data-reveal
+        >
+
+          <!-- Kartu foto: bingkai membulat + blok pastel di belakangnya -->
+          <div class="project-frame-col">
+            <div class="project-frame">
+              <div class="project-media">
+                {p.image
+                  ? <>
+                      <img class="thumb-img thumb-img--base" src={p.image} alt={p.title} loading="lazy" />
+                      {p.imageHover && (
+                        <img class="thumb-img thumb-img--swap" src={p.imageHover} alt="" aria-hidden="true" loading="lazy" />
+                      )}
+                    </>
+                  : <div class="project-thumb-placeholder">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="3"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21,15 16,10 5,21"/>
+                      </svg>
+                    </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="project-body">
+            <h3 class="project-title">{p.title}</h3>
+            <p class="project-desc">{p.description}</p>
+
+            {p.stack.length > 0 && (
+              <div class="project-stack">
+                {p.stack.map(tech => (
+                  <span class="project-tag">{tech}</span>
+                ))}
+              </div>
+            )}
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

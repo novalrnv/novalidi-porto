@@ -1,0 +1,49 @@
+---
+const name = 'Khoirul Umam Novalidi';
+---
+
+<section id="home" class="hero">
+
+  <!-- DESKTOP: foto overlay di atas teks satu baris -->
+  <!-- MOBILE: foto atas, teks bawah -->
+  <div class="hero-inner">
+
+    <!-- Giant title -->
+    <h5 class="hero-title">UI/UX ENGINEER</h5>
+
+    <!-- Photo card — absolute di desktop, normal flow di mobile -->
+    <div class="card-stack-wrapper">
+      <div class="card-back card-b1" aria-hidden="true"></div>
+      <div class="card-back card-b2" aria-hidden="true"></div>
+      <div class="card-back card-b3" aria-hidden="true"></div>
+
+      <div class="card-photo">
+        <!-- CHANGE: update src if you rename the image -->
+        <img src="/images/opang.jpeg" alt={name} />
+      </div>
+
+      <div class="name-badge">
+        <span class="badge-text">hi,</span>
+        <!-- CHANGE: update name -->
+        <span class="badge-text">I'm {name}</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  // Setelah animasi "deal" selesai, lepas kunci transform supaya hover bisa
+  // ditransisikan. Animasi terakhir adalah foto (delay 0.8s + 1.1s = 1.9s).
+  const stack = document.querySelector('.card-stack-wrapper');
+  const photo = stack?.querySelector('.card-photo');
+
+  if (stack && photo) {
+    const markDealt = () => stack.classList.add('dealt');
+
+    photo.addEventListener('animationend', markDealt, { once: true });
+    // Cadangan kalau animationend tidak pernah terpanggil
+    setTimeout(markDealt, 2600);
+  }
+</script>

@@ -1,0 +1,79 @@
+---
+// Navbar component
+---
+
+<nav class="navbar">
+  <!-- Left: nav links (desktop) / hamburger (mobile) -->
+  <div class="nav-left">
+    <!-- Rute absolut dengan hash: tetap bekerja dari halaman selain beranda,
+         dan di beranda tidak memicu muat ulang (same-document navigation). -->
+    <a href="/#about">About</a>
+    <a href="/#journey">Journey</a>
+    <a href="/#project">Project</a>
+    <a href="/#contact">Contact</a>
+  </div>
+
+  <!-- Left mobile: hamburger di pojok kiri -->
+  <button class="hamburger" id="hamburgerBtn" aria-label="Buka menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Center brand -->
+  <a href="/#home" class="nav-brand">NOVAL</a>
+
+  <!-- Right: CV -->
+  <div class="nav-right">
+    <!-- Menunjuk ke file PDF, bukan ke halaman /cv. Halaman /cv tetap ada
+         sebagai sumber PDF, tapi tidak lagi ditautkan dari navbar. -->
+    <a href="/Khoirul Umam Novalidi-CV.pdf" class="btn-cv" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      View CV
+    </a>
+  </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/#about">About</a>
+  <a href="/#journey">Journey</a>
+  <a href="/#project">Project</a>
+  <a href="/#contact">Contact</a>
+  <!-- Satu-satunya jalan ke CV di layar kecil: .btn-cv disembunyikan di ≤768px. -->
+  <a href="/Khoirul Umam Novalidi-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+</div>
+
+<script>
+  // Hamburger
+  const btn = document.getElementById('hamburgerBtn') as HTMLButtonElement;
+  const nav = document.getElementById('mobileNav') as HTMLDivElement;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  nav.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target as Node) && !nav.contains(e.target as Node)) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

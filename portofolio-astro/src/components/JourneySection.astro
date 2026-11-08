@@ -1,0 +1,60 @@
+---
+// Cerita asal-usul: desain → kode → desain lagi.
+// Label section berbahasa Inggris (Journey) mengikuti aturan situs:
+// kerangka navigasi dan label berbahasa Inggris, isi berbahasa Indonesia.
+//
+// Tidak ada nomor 01–04 di sini, padahal bagian lain situs memakainya.
+// Tahun di kolom kiri sudah menyatakan urutan dengan lebih tepat, jadi
+// menambahkan nomor hanya akan menduplikasi informasi yang sama.
+const steps = [
+  {
+    year: '2021',
+    title: 'SMKN 1 Sumenep - Rekayasa Perangkat Lunak',
+    desc: 'Sebelum masuk SMK sudah tertarik pada desain. Di kelas 1, minat itu berjalan bersamaan dengan pelajaran pemrograman dari jurusan RPL.',
+  },
+  {
+    year: '2022',
+    title: 'Kelas 2 - fokus pemrograman',
+    desc: 'Fokus belajar berpindah ke pemrograman. Kegiatan desain dihentikan sementara.',
+  },
+  {
+    year: '2024',
+    title: 'Politeknik Negeri Malang',
+    desc: 'Jurusan Teknologi Informasi, Prodi D-IV Teknik Informatika. Dua tahun pertama diisi pemrograman; desain tidak menjadi fokus.',
+  },
+  {
+    year: '2025',
+    title: 'Semester 3 - kembali ke desain',
+    desc: 'Mempelajari kembali desain antarmuka melalui Figma dan Canva. Berlanjut hingga sekarang. Pemrograman tetap menjadi pekerjaan utama; desain dipelajari berdampingan.',
+  },
+];
+---
+
+<section id="journey" class="journey-section">
+  <div class="journey-container">
+
+    <div class="journey-head" data-reveal>
+      <span class="about-label">Journey</span>
+      <h2 class="journey-heading">Desain yang sempat berhenti.</h2>
+    </div>
+
+    <ol class="journey-list">
+      {steps.map((s, i) => (
+        <li class="journey-item" data-reveal data-delay={i > 0 ? String(i) : undefined}>
+          <span class="journey-year">{s.year}</span>
+
+          <div class="journey-body">
+            <div class="journey-rail" aria-hidden="true">
+              <span class="journey-dot"></span>
+            </div>
+            <div class="journey-content">
+              <h3 class="journey-title">{s.title}</h3>
+              <p class="journey-desc">{s.desc}</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>

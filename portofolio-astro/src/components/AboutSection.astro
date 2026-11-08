@@ -1,0 +1,69 @@
+---
+const skills = [
+  { num: '01', label: 'Design Tools',      items: ['Figma', 'Canva'] },
+  { num: '02', label: 'Web Technologies',  items: ['HTML', 'CSS', 'JavaScript', 'React'] },
+  { num: '03', label: 'Development Tools', items: ['VS Code'] },
+  {
+    num: '04',
+    label: 'Mobile App',
+    /* Ditambahkan supaya daftar skill tidak bertentangan dengan tech stack
+       yang tertulis di kartu project. */
+    items: ['Flutter', 'Dart'],
+  },
+];
+---
+
+<section id="about" class="about-section">
+  <div class="about-container">
+
+    <!-- Kiri: Foto -->
+    <div class="about-photo-wrap">
+      <div class="about-card" data-reveal="from-top">
+        <!-- CHANGE: ganti src dengan foto lain jika sudah punya -->
+        <img src="/images/about-opang.jpeg" alt="Khoirul Umam Novalidi" class="about-photo" />
+      </div>
+      <div class="about-photo-accent" data-reveal="from-bottom" data-delay="1" aria-hidden="true"></div>
+    </div>
+
+    <!-- Kanan: Konten -->
+    <div class="about-content" data-reveal data-delay="1">
+
+      <span class="about-label">About Me</span>
+
+      <h2 class="about-heading">
+        Merancang. Membangun.<br />Menyelesaikan.
+      </h2>
+
+      <!-- CHANGE: edit bio sesuai keinginanmu -->
+      <p class="about-bio">
+        Halo, saya <strong>Khoirul Umam Novalidi</strong>, mahasiswa Jurusan Teknologi Informasi
+        (Prodi D-IV Teknik Informatika) Politeknik Negeri Malang, yang berfokus pada
+        UI/UX Engineering dan Frontend Development. Saya memiliki komitmen untuk merancang
+        antarmuka yang intuitif dan mengimplementasikannya dengan kode yang bersih dan efisien.
+      </p>
+      <p class="about-bio">
+        Dengan pendekatan yang berorientasi pada pengguna, saya berusaha menjembatani
+        desain dan teknologi untuk menghadirkan produk digital yang tidak hanya indah
+        secara visual, tetapi juga fungsional dan mudah digunakan.
+      </p>
+
+      <!-- Skills -->
+      <div class="about-skills">
+        {skills.map(group => (
+          <div class="skill-group">
+            <span class="skill-group-label">
+              <span class="skill-num">{group.num}</span>
+              {group.label}
+            </span>
+            <div class="skill-pills">
+              {group.items.map(s => (
+                <span class="skill-pill">{s}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
