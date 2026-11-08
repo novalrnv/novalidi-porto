@@ -20,9 +20,9 @@ const projects = [
     description: 'SmartReceipt Analyzer - aplikasi mobile Flutter yang memindai struk belanja dengan OCR on-device, mengklasifikasikan item ke 9 kategori belanja memakai model TF-IDF + Naive Bayes yang berjalan offline, lalu menyajikan riwayat, analisis, dan prediksi pengeluaran dari database SQLite lokal.',
     stack: ['Flutter', 'Dart', 'On Device ~ OCR'],
     /* Foto utama: tampil default */
-    image: '/images/smart-receipt-logo.jpg',
+    image: '/images/smart-receipt-logo.webp',
     /* Foto kedua: tampil saat kursor menyentuh kartu */
-    imageHover: '/images/smart-receipt-app.jpg',
+    imageHover: '/images/smart-receipt-app.webp',
   },
   {
     title: 'Segera Hadir',
@@ -57,12 +57,12 @@ const projects = [
           <!-- Kartu foto: bingkai membulat + blok pastel di belakangnya -->
           <div class="project-frame-col">
             <div class="project-frame">
-              <div class="project-media">
+              <div class={`project-media ${p.imageHover ? 'project-media--has-hover' : ''}`}>
                 {p.image
                   ? <>
-                      <img class="thumb-img thumb-img--base" src={p.image} alt={p.title} loading="lazy" />
+                      <img class="thumb-img thumb-img--base" src={p.image} alt="" aria-hidden="true" loading="lazy" />
                       {p.imageHover && (
-                        <img class="thumb-img thumb-img--swap" src={p.imageHover} alt="" aria-hidden="true" loading="lazy" />
+                        <img class="thumb-img thumb-img--swap" src={p.imageHover} alt={p.title} loading="lazy" />
                       )}
                     </>
                   : <div class="project-thumb-placeholder">

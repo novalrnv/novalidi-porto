@@ -1036,7 +1036,13 @@ html.no-webgl body::before { display: block; }
 /* Perangkat tanpa hover: kembali ke keadaan diam saat ter-tap.
    Di layar sentuh, :hover menempel setelah jari diangkat — tanpa
    pembatalan ini kartu tertinggal dalam posisi menegak dan terangkat.
-   Ditaruh SETELAH aturan hover di atas karena specificity-nya sama. */
+   Ditaruh SETELAH aturan hover di atas karena specificity-nya sama.
+
+   Karena tidak ada kursor yang bisa memicu pergantian foto,
+   screenshot ditampilkan sebagai gambar utama di sini. Logo di-`display:
+   none` supaya tidak ikut terunduh di jaringan seluler. Cakupan selektornya
+   .project-media--has-hover agar project yang tidak punya foto kedua tidak
+   kehilangan gambarnya. */
 @media (hover: none) {
   .project-frame-col:hover {
     transform: rotate(var(--card-tilt));
@@ -1047,7 +1053,9 @@ html.no-webgl body::before { display: block; }
   }
 
   .project-frame-col:hover .thumb-img { transform: none; }
-  .project-frame-col:hover .thumb-img--swap { opacity: 0; }
+
+  .project-media--has-hover .thumb-img--base { display: none; }
+  .project-media--has-hover .thumb-img--swap { opacity: 1; }
 }
 
 /* ── Info di samping gambar ───────────────────────── */
